@@ -1,7 +1,11 @@
 import React from 'react'
 import {Radar} from 'react-chartjs-2';
 
-const data = {
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const getState = () => ({
     labels: ["Neutral", 'Positive', 'Very Positive', 'Negative', 'Very Negative'],
     datasets: [
         {
@@ -12,23 +16,37 @@ const data = {
             pointBorderColor: '#e7e7ff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(179,181,198,1)',
-            data: [65, 59, 90, 81, 56]
+            data: [getRandomInt(0,100), getRandomInt(0,100), getRandomInt(0,100), getRandomInt(0,100), getRandomInt(0,100)]
         }
     ],
 
-};
+});
 
 const options = {
     responsive : true
 }
 
 class sentimentAnalysisChart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.getInitialState()
+        this.ComponentWillMount()
+    }
+    getInitialState() {
+        return getState()
+    }
+    ComponentWillMount(){
+        setInterval(()=>{
+            this.setState(getState())
+        }, 5000)
+    }
+
     render(){
         return (
             <div className = "chart">
                 <h3>Twitter Sentiment Analysis</h3>
                 <Radar
-                    data = {data}
+                    data = {getState()}
                     options = {options}
                 />
             </div>
