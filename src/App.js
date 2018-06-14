@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './images/twitcoin.gif';
-import twitter from './images/TwitterSample.png'
-import chart from './images/SampleChart.png'
 import './App.css';
+import SentimentAnalysis from './components/sentimentAnalysisChart'
+import BuySell from './components/BuyOrSell'
+import BitCoinChart from './components/BitCoinChart'
 
 class App extends Component {
   render() {
@@ -13,17 +14,13 @@ class App extends Component {
                 <div className="block">
                     <img src={logo} alt="logo" align="center" className = "logo"/>
                 </div>
-                <div className="block">
+                <div>
                     <p className = "leftText">Neural net aided Twitter sentiment analysis for the prediction of bitcoin prices</p>
                 </div>
             </div>
             <div className="container">
-                <div className="block">
-                    <img src={twitter} alt="twitter" className="image"/>
-                </div>
-                <div className = "block">
-                    <img src={chart} alt="chart" className="image"/>
-                </div>
+                    <SentimentAnalysis/>
+                    <BitCoinChart/>
             </div>
         </header>
       </div>
