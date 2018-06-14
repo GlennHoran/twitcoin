@@ -14,16 +14,24 @@ const data = {
             pointHoverBorderColor: 'rgba(179,181,198,1)',
             data: [65, 59, 90, 81, 56]
         }
-    ]
+    ],
+
 };
+
+const options = {
+    responsive : true
+}
 
 class sentimentAnalysisChart extends React.Component {
     render(){
         return (
-        <div>
-            <h2>Bitcoin sentiment</h2>
-            <Radar data = {data}/>
-        </div>
+            <div className = "chart">
+                <h3>Twitter Sentiment Analysis</h3>
+                <Radar
+                    data = {data}
+                    options = {options}
+                />
+            </div>
         );
     }
 }

@@ -49,15 +49,20 @@ const data = {
         }
     ]
 };
-
+const options = {
+    responsive : true
+}
 
 export default class BitcoinChart extends React.Component{
     render(){
         return(
-            <div>
-            <h2>Price vs Sentiment</h2>
-            <Line data={data}/>
-            </div>
+        <div className = "chart">
+            <h3>Bitcoin Price Vs Twitter Sentiment</h3>
+            <Line
+                data={data}
+                options={options}
+            />
+        </div>
         )
     }
 }

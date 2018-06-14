@@ -23,14 +23,18 @@
   justify-content: center;
 }
 
+.chart{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 10px;
+}
+
 .introText{
   display: flex;
   justify-content: center;
   flex-direction: column;
   flex: 1;
-}
-
-.image {
 }
 
 .leftText {
@@ -40,7 +44,7 @@
 
 
 
-img, embed, object, video {
+img, embed, object, video, .chart {
   max-width: 100%;
 }
 
@@ -51,25 +55,35 @@ img, embed, object, video {
   .logo {
     max-width: 6em;
   }
+  .chart {
+  max-width: 20em;
+  }
 }
 
 @media only screen and (min-width: 400px) {
   .leftText {
-    font-size: 30px;
+    font-size: 20px;
   }
   .logo {
     max-width: 10em;
   }
+  .chart {
+max-width: 30em;
+  }
+
 
 }
 
 @media only screen and (min-width: 600px) {
   .leftText {
-    font-size: 40px;
+    font-size: 30px;
 
   }
   .logo {
-    ax-width: 16em;
+    max-width: 16em;
+  }
+  .chart {
+    max-width: 40em;
   }
 }
 
