@@ -1,21 +1,24 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
 
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-const data = {
+const getState = () => ({
     labels: ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30'],
     datasets: [
         {
             label: 'Bitcoin price',
             fill: false,
             lineTension: 0.1,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
+            backgroundColor: '#ffd22a',
+            borderColor: '#ffd22a',
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: '#ffd22a',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
             pointHoverRadius: 5,
@@ -24,19 +27,19 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: [getRandomInt(0, 100),getRandomInt(0, 100),getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100)]
         },
         {
             label: 'Twitter Sentiment',
             fill: false,
             lineTension: 0.1,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
+            backgroundColor: '#21aeff',
+            borderColor: '#21aeff',
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: '#21aeff',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
             pointHoverRadius: 5,
@@ -45,21 +48,36 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [4, 2, 2, 1, 3, 3,4]
+            data: [getRandomInt(0, 100),getRandomInt(0, 100),getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100)]
         }
     ]
-};
+});
 const options = {
     responsive : true
 }
 
 export default class BitcoinChart extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.getInitialState()
+        this.ComponentWillMount()
+    }
+    getInitialState() {
+        return getState()
+    }
+    ComponentWillMount(){
+        setInterval(()=>{
+            this.setState(getState())
+        }, 5000)
+    }
+
     render(){
         return(
         <div className = "chart">
             <h3>Bitcoin Price Vs Twitter Sentiment</h3>
             <Line
-                data={data}
+                data={this.state}
                 options={options}
             />
         </div>
