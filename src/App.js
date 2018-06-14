@@ -18,9 +18,10 @@ class App extends Component {
                     <p className = "leftText">Neural net aided Twitter sentiment analysis for the prediction of bitcoin prices</p>
                 </div>
             </div>
-            <div className="container">
-                    <SentimentAnalysis/>
-                    <BitCoinChart/>
+            <div className = "container">
+                <BuySell/>
+                <BitCoinChart />
+                <SentimentAnalysis/>
             </div>
         </header>
       </div>
