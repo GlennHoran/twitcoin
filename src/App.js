@@ -11,7 +11,18 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
             <div className="introText">
-                <div className="block">
+                <div>
+                    <nav className="flexContainer blueBackground">
+                        <ul className="nav flexItem flexStart">
+                        </ul>
+                        <ul className="nav flexContainer flexEnd">
+                            <li className="link"><a href="#">Github</a></li>
+                            <li><a href="#">About</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div>
                     <img src={logo} alt="logo" align="center" className = "logo"/>
                 </div>
                 <div>

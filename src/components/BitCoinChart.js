@@ -10,6 +10,7 @@ const getState = () => ({
     datasets: [
         {
             label: 'Bitcoin price',
+            yAxisID: 'Bitcoin price $',
             fill: false,
             lineTension: 0.1,
             backgroundColor: '#ffd22a',
@@ -27,10 +28,11 @@ const getState = () => ({
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [getRandomInt(0, 100),getRandomInt(0, 100),getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100)]
+            data: [getRandomInt(0, 10000),getRandomInt(0, 10000),getRandomInt(0, 10000), getRandomInt(0, 10000), getRandomInt(0, 10000), getRandomInt(0, 10000), getRandomInt(0, 10000)]
         },
         {
             label: 'Twitter Sentiment',
+            yAxisID: 'Twitter Sentiment Score (0-4)',
             fill: false,
             lineTension: 0.1,
             backgroundColor: '#21aeff',
@@ -48,12 +50,39 @@ const getState = () => ({
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [getRandomInt(0, 100),getRandomInt(0, 100),getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100), getRandomInt(0, 100)]
+            data: [getRandomInt(0, 4),getRandomInt(0, 4),getRandomInt(0, 4), getRandomInt(0, 4), getRandomInt(0, 4), getRandomInt(0, 4), getRandomInt(0, 4)]
         }
     ]
 });
 const options = {
-    responsive : true
+    responsive : true,
+    scales: {
+        yAxes: [{
+            id: 'Bitcoin price $',
+            type: 'linear',
+            position: 'left',
+            scaleLabel: {
+                display: true,
+                labelString: 'Bitcoin Price $'
+            },
+            ticks: {
+                max: 10000,
+                min: 0
+            }
+        }, {
+            id: 'Twitter Sentiment Score (0-4)',
+            type: 'linear',
+            position: 'right',
+            scaleLabel: {
+                display: true,
+                labelString: 'Twitter Sentiment Score (0-4)'
+            },
+            ticks: {
+                max: 4,
+                min: 0
+            }
+        }]
+    }
 }
 
 export default class BitcoinChart extends React.Component{
