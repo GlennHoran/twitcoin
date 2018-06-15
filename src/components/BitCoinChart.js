@@ -2,12 +2,52 @@ import React from 'react'
 import {Line} from 'react-chartjs-2'
 import axios from 'axios'
 
-function getRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+var jsonData = {
+    "jsonArray":[]
 }
 
+var labels = jsonData.jsonArray.map(function(e) {
+    return e.date_added;
+});
+var data = jsonData.jsonArray.map(function(e) {
+    return e.bitcoin_price;
+});
+
+var data2 = jsonData.jsonArray.map(function(e) {
+    return e.sentiment_score;
+});;
+
+function getData(){
+
+console.log("getting data..")
+
+    axios.get('https://limitless-dawn-80311.herokuapp.com/reading/')
+       .then(response => {
+           jsonData.jsonArray=[];
+           for(let i = 0; i < response.data.length; i++){
+        jsonData.jsonArray.push(response.data[i]);
+    }})
+
+    labels = jsonData.jsonArray.map(function(e) {
+        console.log(JSON.stringify(e));
+
+        return e.fields.date_added.substring(11,19);
+    }).reverse();
+    data = jsonData.jsonArray.map(function(e) {
+        return e.fields.bitcoin_price;
+    }).reverse();
+    data2 = jsonData.jsonArray.map(function(e) {
+        return e.fields.sentiment_score;
+    }).reverse();;
+
+
+
+}
+
+
+
 const getState = () => ({
-    labels: ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30'],
+    labels: labels,
     datasets: [
         {
             label: 'Bitcoin price',
@@ -29,7 +69,7 @@ const getState = () => ({
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [getRandomInt(0, 10000),getRandomInt(0, 10000),getRandomInt(0, 10000), getRandomInt(0, 10000), getRandomInt(0, 10000), getRandomInt(0, 10000), getRandomInt(0, 10000)]
+            data: data
         },
         {
             label: 'Twitter Sentiment',
@@ -51,7 +91,7 @@ const getState = () => ({
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [getRandomInt(0, 4),getRandomInt(0, 4),getRandomInt(0, 4), getRandomInt(0, 4), getRandomInt(0, 4), getRandomInt(0, 4), getRandomInt(0, 4)]
+            data: data2
         }
     ]
 });
@@ -67,8 +107,8 @@ const options = {
                 labelString: 'Bitcoin Price $'
             },
             ticks: {
-                max: 10000,
-                min: 0
+                max: 6550,
+                min: 6450
             }
         }, {
             id: 'Twitter Sentiment Score (0-4)',
@@ -79,8 +119,8 @@ const options = {
                 labelString: 'Twitter Sentiment Score (0-4)'
             },
             ticks: {
-                max: 4,
-                min: 0
+                max: 2.5,
+                min: 1.5
             }
         }]
     }
@@ -98,6 +138,7 @@ export default class BitcoinChart extends React.Component{
     }
     ComponentWillMount(){
         setInterval(()=>{
+            getData()
             this.setState(getState())
         }, 5000)
     }

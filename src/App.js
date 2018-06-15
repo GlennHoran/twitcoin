@@ -30,12 +30,9 @@ class App extends Component {
                 </div>
             </div>
             <div className = "container">
-                <BuySell/>
                 <BitCoinChart />
+                <BuySell/>
                 <SentimentAnalysis/>
-            </div>
-            <div>
-                <HttpTest/>
             </div>
         </header>
       </div>
