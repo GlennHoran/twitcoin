@@ -1,5 +1,6 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
+import axios from 'axios'
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

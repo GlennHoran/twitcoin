@@ -4,6 +4,7 @@ import './App.css';
 import SentimentAnalysis from './components/sentimentAnalysisChart'
 import BuySell from './components/BuyOrSell'
 import BitCoinChart from './components/BitCoinChart'
+import HttpTest from './components/httpTest'
 
 class App extends Component {
   render() {
@@ -16,7 +17,6 @@ class App extends Component {
                         <ul className="nav flexItem flexStart">
                         </ul>
                         <ul className="nav flexContainer flexEnd">
-                            <li className="link"><a href="#">Github</a></li>
                             <li><a href="#">About</a></li>
 
                         </ul>
@@ -33,6 +33,9 @@ class App extends Component {
                 <BuySell/>
                 <BitCoinChart />
                 <SentimentAnalysis/>
+            </div>
+            <div>
+                <HttpTest/>
             </div>
         </header>
       </div>
