@@ -1,4 +1,4 @@
-*Work in progress, estimated v.10 - 16th June 2018 
+Front end for twitcoin app winner of the LIT data hackathon in the summer of 2018 
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
